@@ -12,7 +12,23 @@ public class JeuDuNim {
 		System.out.println("quel joueur commence ? : (1 ou 2)");
 		int playerFirst = scan.nextInt();
 		
-
+		int candles = 21;
+		
+		while (candles > 0)
+		{
+			if(playerFirst == 1)
+			{
+				System.out.println(playerOne + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
+				int pOneRemove = scan.nextInt();
+				candles -= pOneRemove;
+			}
+			else if(playerFirst == 2)
+			{
+				System.out.println(playerTwo + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
+				int pTwoRemove = scan.nextInt();
+				candles -= pTwoRemove;
+			}
+		}
 	}
 
 }
