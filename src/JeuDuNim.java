@@ -1,44 +1,57 @@
 import java.util.Scanner;
 
-public class JeuDuNim {
+public class JeuDuNim 
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Scanner scan = new Scanner(System.in);
 		
+		System.out.println("Bonjour le joueur 1 commence toujours en 1er !");
 		System.out.println("joueur 1 quel est votre nom ? :");
 		String playerOne = scan.nextLine();
 		System.out.println("joueur 2 quel est votre nom ? :");
 		String playerTwo = scan.nextLine();
+		System.out.println("quel joueur , joue en premier ? : ");
+		int firstPlayer = scan.nextInt();
 		
 		int candles = 21;
 		String lastPlayer = null;
 		
 		while (candles > 0)
 		{
-			System.out.println(playerOne + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
-			int pOneRemove = scan.nextInt();
-			candles -= pOneRemove;
-			System.out.println("reste : " + candles + " allumette");
-			if(candles == 1)
+			if(firstPlayer == 1)
 			{
-				lastPlayer = playerTwo;
+				System.out.println(playerOne.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
+				int pOneRemove = scan.nextInt();
+				candles -= pOneRemove;
+				System.out.println("reste : " + candles + " allumette");
+				firstPlayer = 2;
+				if(candles == 1)
+				{
+					lastPlayer = playerTwo;
+				}
+				if(candles == 0)
+				{
+					break;
+				}
 			}
-			if(candles == 0)
+			
+			if(firstPlayer == 2)
 			{
-				break;
+				System.out.println(playerTwo.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
+				int pTwoRemove = scan.nextInt();
+				candles -= pTwoRemove;
+				System.out.println("reste : " + candles + " allumette");
+				firstPlayer = 1;
+				if(candles == 1)
+				{
+					lastPlayer = playerOne;
+				}
 			}
-		
-			System.out.println(playerTwo + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
-			int pTwoRemove = scan.nextInt();
-			candles -= pTwoRemove;
-			System.out.println("reste : " + candles + " allumette");
-			if(candles == 1)
-			{
-				lastPlayer = playerOne;
-			}
+			
 		}
 		scan.close();
-		System.out.println(lastPlayer + " a perdu ");
+		System.out.println(lastPlayer.toUpperCase() + " a perdu ");
 	}
-
 }
