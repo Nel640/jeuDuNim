@@ -15,6 +15,12 @@ public class JeuDuNim
 		System.out.println("quel joueur , joue en premier ? : ");
 		int firstPlayer = scan.nextInt();
 		
+		while( firstPlayer < 1 || firstPlayer > 2)
+		{
+			System.out.println("entrez un n° de joueur , 1 ou 2 uniquement : ");
+			firstPlayer = scan.nextInt();
+		}
+		
 		int candles = 21;
 		String lastPlayer = null;
 		
@@ -27,6 +33,7 @@ public class JeuDuNim
 				candles -= pOneRemove;
 				System.out.println("reste : " + candles + " allumette");
 				firstPlayer = 2;
+				
 				if(candles == 1)
 				{
 					lastPlayer = playerTwo;
@@ -44,6 +51,7 @@ public class JeuDuNim
 				candles -= pTwoRemove;
 				System.out.println("reste : " + candles + " allumette");
 				firstPlayer = 1;
+				
 				if(candles == 1)
 				{
 					lastPlayer = playerOne;
