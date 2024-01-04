@@ -31,12 +31,14 @@ public class JeuDuNim
 				System.out.println(playerOne.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
 				int pOneRemove = scan.nextInt();
 				candles -= pOneRemove;
+				verifOneToFour(pOneRemove, scan);
 				System.out.println("reste : " + candles + " allumette");
 				firstPlayer = 2;
 				
 				if(candles == 1)
 				{
 					lastPlayer = playerTwo;
+					
 				}
 				if(candles == 0)
 				{
@@ -49,6 +51,7 @@ public class JeuDuNim
 				System.out.println(playerTwo.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
 				int pTwoRemove = scan.nextInt();
 				candles -= pTwoRemove;
+				verifOneToFour(pTwoRemove, scan);
 				System.out.println("reste : " + candles + " allumette");
 				firstPlayer = 1;
 				
@@ -61,5 +64,16 @@ public class JeuDuNim
 		}
 		scan.close();
 		System.out.println(lastPlayer.toUpperCase() + " a perdu ");
+	}
+	
+	public static String verifOneToFour ( int numberUser , Scanner scan)
+	{
+		String warning = null;
+		while( numberUser > 4 || numberUser <= 0 )
+		{
+			System.out.println("possibiliter de retirer 1 a 4 alumettes , pas plus , pas moins : ");
+			numberUser = scan.nextInt();
+		}
+		return warning;
 	}
 }
