@@ -21,26 +21,27 @@ public class JeuDuNim
 			firstPlayer = scan.nextInt();
 		}
 		
-		int candles = 21;
+		int matches = 21;
 		String lastPlayer = null;
 		
-		while (candles > 0)
+		while (matches > 0)
 		{
 			if(firstPlayer == 1)
 			{
 				System.out.println(playerOne.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
 				int pOneRemove = scan.nextInt();
-				candles -= pOneRemove;
-				verifOneToFour(pOneRemove, scan);
-				System.out.println("reste : " + candles + " allumette");
+				pOneRemove = verifMatchesRemove(pOneRemove, scan , matches);
+				
+				matches -= pOneRemove;
+				
+				System.out.println("reste : " + matches + " allumette");
 				firstPlayer = 2;
 				
-				if(candles == 1)
+				if(matches == 1)
 				{
 					lastPlayer = playerTwo;
-					
 				}
-				if(candles == 0)
+				if(matches == 0)
 				{
 					break;
 				}
@@ -50,30 +51,41 @@ public class JeuDuNim
 			{
 				System.out.println(playerTwo.toUpperCase() + " combien d'allumette voulez vous retirer entre 1 et 4 ? : ");
 				int pTwoRemove = scan.nextInt();
-				candles -= pTwoRemove;
-				verifOneToFour(pTwoRemove, scan);
-				System.out.println("reste : " + candles + " allumette");
+				pTwoRemove = verifMatchesRemove(pTwoRemove, scan , matches);
+				
+				matches -= pTwoRemove;
+				
+				System.out.println("reste : " + matches + " allumette");
 				firstPlayer = 1;
 				
-				if(candles == 1)
+				if(matches == 1)
 				{
 					lastPlayer = playerOne;
 				}
 			}
-			
 		}
 		scan.close();
 		System.out.println(lastPlayer.toUpperCase() + " a perdu ");
 	}
 	
-	public static String verifOneToFour ( int numberUser , Scanner scan)
+	public static int verifMatchesRemove ( int numberUser , Scanner scan , int matches)
 	{
-		String warning = null;
-		while( numberUser > 4 || numberUser <= 0 )
+		if( numberUser > 4 || numberUser <= 0 )
 		{
-			System.out.println("possibiliter de retirer 1 a 4 alumettes , pas plus , pas moins : ");
-			numberUser = scan.nextInt();
+			while( numberUser > 4 || numberUser <= 0 )
+			{
+				System.out.println("possibiliter de retirer 1 a 4 alumettes , pas plus , pas moins : ");
+				numberUser = scan.nextInt();
+			}
 		}
-		return warning;
+		else if ( matches == 1  && (numberUser > 1 || numberUser <= 0))
+		{
+			while( numberUser > 1 || numberUser <= 0 )
+			{
+				System.out.println("reste que 1 alumette : ");
+				numberUser = scan.nextInt();
+			}
+		}
+		return numberUser;
 	}
 }
